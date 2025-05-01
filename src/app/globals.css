@@ -24,3 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+}
