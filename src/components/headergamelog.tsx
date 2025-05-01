@@ -186,148 +186,139 @@ const HeaderGameLog = () => {
   return (
     <div>
       {/* Header Section */}
-      <div
-        className="w-full bg-white flex items-center justify-between font-sans rounded-none shadow  pt-3 pr-5 pl-5
-"
-      >
-        {/* Player Image and Info */}
-        <div className="flex items-center gap-[75px] flex-nowrap overflow-x-auto">
-          <div className="flex-shrink-0">
-            {wikiData?.Image ? (
-              <Image
-                src={wikiData.Image}
-                alt={playerName}
-                width={165}
-                height={0}
-                className="rounded-md object-cover"
-              />
-            ) : (
-              <div className="w-[145px] h-[174px] bg-gray-200 rounded-md" />
-            )}
-          </div>
-
-          {/* Profile Info */}
-          <div className="flex flex-col min-w-[200px]">
-            <h1 className="text-[33px] m-0 text-black uppercase tracking-wider font-normal ">
-              {playerName}
-            </h1>
-            <div className="text-black mt-1 text-[14px] flex items-center gap-2">
-              <span>{wikiData?.["Competitive"]?.Team || "Loading..."}</span> •
-              <span>{wikiData?.["Competitive"]?.Role || "Loading..."}</span> •
-              {wikiData?.["Social Media & Links"]?.Instagram && (
-                <a
-                  href={wikiData["Social Media & Links"].Instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center"
-                >
-                  <img
-                    src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Emblem.png"
-                    alt="Instagram"
-                    className="w-5 h-5 object-contain"
-                  />
-                </a>
+      <div className="w-full bg-white font-sans rounded-none shadow pt-3 px-5">
+        <div className="flex flex-row justify-between items-center gap-0 pb-0 mb-0 max-[1091px]:flex-col max-[1091px]:items-center max-[1091px]:pb-0 max-[1091px]:mb-0">
+          {/* Left: Player Image and Basic Info */}
+          <div className="flex flex-row items-center gap-6">
+            <div className="flex-shrink-0">
+              {wikiData?.Image ? (
+                <Image
+                  src={wikiData.Image}
+                  alt={playerName}
+                  width={165}
+                  height={0}
+                  className="rounded-md object-cover"
+                />
+              ) : (
+                <div className="w-[145px] h-[174px] bg-gray-200 rounded-md" />
               )}
             </div>
 
-            <button className="hidden mt-2 px-6 py-2 bg-blue-600 text-white rounded-full font-bold w-fit">
-              Follow
-            </button>
+            <div className="flex flex-col justify-center min-w-[250px] max-w-[300px]">
+              <h1 className="text-[28px] text-black tracking-wider font-semibold uppercase m-0 max-[1091px]:text-[24px] break-words">
+                {playerName}
+              </h1>
+
+              <div className="text-black text-[14px] mt-1 flex flex-wrap items-center gap-2 whitespace-normal">
+                <span>{wikiData?.["Competitive"]?.Team || "Loading..."}</span> •
+                <span>{wikiData?.["Competitive"]?.Role || "Loading..."}</span> •
+                {wikiData?.["Social Media & Links"]?.Instagram && (
+                  <a
+                    href={wikiData["Social Media & Links"].Instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center"
+                  >
+                    <img
+                      src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Emblem.png"
+                      alt="Instagram"
+                      className="w-5 h-5 object-contain"
+                    />
+                  </a>
+                )}
+              </div>
+
+              <button className="mt-2 px-6 py-2 bg-blue-600 text-white rounded-full font-bold w-fit hidden max-[1091px]:hidden">
+                Follow
+              </button>
+            </div>
           </div>
 
-          {/* Personal Info */}
-          <div className="flex flex-col gap-2 min-w-[220px] border-l border-gray-300 pl-5 text-sm">
-            <div className="flex justify-between">
-              <strong
-                className=" w-[100px] font-normal"
-                style={{ color: "rgb(108, 109, 111)" }}
-              >
-                Name:
-              </strong>
-              <span className="font-bold text-black">
-                {wikiData?.["Background Information"]?.Name || "Loading..."}
-              </span>
+          {/* Right: Personal Info and Stats */}
+          <div className="flex flex-row items-center justify-end gap-10 w-full max-[1091px]:flex-col max-[1091px]:items-center max-[1091px]:gap-4">
+            {/* Personal Info */}
+            <div className="flex flex-col gap-2 min-w-[220px] text-sm border-l border-gray-300 pl-5 max-[1091px]:border-l-0 max-[1091px]:border-t pt-3 max-[1091px]:pl-0 max-[1091px]:w-full">
+              <div className="flex justify-between">
+                <strong className="w-[100px] font-normal text-gray-500">
+                  Name:
+                </strong>
+                <span className="font-bold text-black">
+                  {wikiData?.["Background Information"]?.Name || "Loading..."}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <strong className="w-[100px] font-normal text-gray-500">
+                  Birthdate:
+                </strong>
+                <span className="font-bold text-black text-xs">
+                  {wikiData?.["Background Information"]?.Birthday ||
+                    "Loading..."}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <strong className="w-[100px] font-normal text-gray-500">
+                  Residency:
+                </strong>
+                <span className="font-bold text-black">
+                  {wikiData?.["Background Information"]?.Residency ||
+                    "Loading..."}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <strong className="w-[100px] font-normal text-gray-500">
+                  Status:
+                </strong>
+                <span className="font-bold text-green-600">● Active</span>
+              </div>
             </div>
-            <div className="flex justify-between">
-              <strong
-                style={{ color: "rgb(108, 109, 111)" }}
-                className=" w-[100px] font-normal"
-              >
-                Birthdate:
-              </strong>
-              <span className="font-bold text-black text-xs">
-                {" "}
-                {wikiData?.["Background Information"]?.Birthday || "Loading..."}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <strong
-                style={{ color: "rgb(108, 109, 111)" }}
-                className=" w-[100px] font-normal"
-              >
-                Residency:
-              </strong>
-              <span className="font-bold text-black">
-                {wikiData?.["Background Information"]?.Residency ||
-                  "Loading..."}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <strong
-                style={{ color: "rgb(108, 109, 111)" }}
-                className=" w-[100px] font-normal"
-              >
-                Status:
-              </strong>
-              <span className="font-bold text-green-600">● Active</span>
-            </div>
-          </div>
-        </div>
 
-        {/* Stats Box */}
-        <div className="bg-gray-100 border border-gray-300 rounded-lg w-[399px] ml-6">
-          <div className="bg-red-500 text-white text-[12px] font-bold text-center py-1 rounded-t-lg">
-            {selectedTournament !== "ALL"
-              ? selectedTournament
-              : ` ${selectedSeason}`}{" "}
-            Stats
-          </div>
-          <div className="flex justify-between p-3 text-black">
-            {loading ? (
-              <div className="flex justify-center items-center w-full h-[50px]">
-                <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-red-500"></div>
+            {/* Stats Box */}
+            <div className="bg-gray-100 border border-gray-300 rounded-lg w-[399px] max-[1091px]:w-full max-[1091px]:mb-[20px]">
+              <div className="bg-red-500 text-white text-[12px] font-bold text-center py-1 rounded-t-lg">
+                {selectedTournament !== "ALL"
+                  ? selectedTournament
+                  : ` ${selectedSeason}`}{" "}
+                Stats
               </div>
-            ) : stats ? (
-              [
-                { value: stats.kda, label: "KDA" },
-                { value: stats.cs_per_minute, label: "CS/Min" },
-                {
-                  value: stats.kill_participation,
-                  label: "Kill Participation",
-                },
-              ].map((stat, index) => (
-                <div className="text-center flex-1" key={index}>
-                  <div className="text-[11px] text-gray-600 mb-1 font-normal">
-                    {stat.label}
+              <div className="flex justify-between p-3 text-black">
+                {loading ? (
+                  <div className="flex justify-center items-center w-full h-[50px]">
+                    <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-red-500"></div>
                   </div>
-                  <div className="text-[22px] font-bold whitespace-nowrap">
-                    {stat.value}
+                ) : stats ? (
+                  [
+                    { value: stats.kda, label: "KDA" },
+                    { value: stats.cs_per_minute, label: "CS/Min" },
+                    {
+                      value: stats.kill_participation,
+                      label: "Kill Participation",
+                    },
+                  ].map((stat, index) => (
+                    <div className="text-center flex-1" key={index}>
+                      <div className="text-[11px] text-gray-600 mb-1 font-normal">
+                        {stat.label}
+                      </div>
+                      <div className="text-[22px] font-bold whitespace-nowrap">
+                        {stat.value}
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center w-full text-gray-400 text-sm">
+                    Loading...
                   </div>
-                </div>
-              ))
-            ) : (
-              <div className="text-center w-full text-gray-400 text-sm">
-                Loading...
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Matches Section */}
       <div className="p-5">
-        <div className="flex gap-6">
-          <div className="bg-white rounded-2xl shadow-md p-6 w-[330px] flex flex-col items-start text-black text-lg font-semibold self-start">
+        <div className="flex gap-6 max-[1091px]:flex-col">
+          {/* Overall record card */}
+          <div className="bg-white rounded-2xl shadow-md p-6 w-[330px] max-[1091px]:w-[100%] flex flex-col items-start text-black text-lg font-semibold self-start">
             {loading ? (
               <div className="flex justify-center items-center w-full h-40">
                 <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-red-500"></div>
@@ -384,7 +375,7 @@ const HeaderGameLog = () => {
                   <h2 className="text-[14px] text-gray-500 font-semibold mb-2 text-left">
                     Champion Stats
                   </h2>
-                  <div className="flex flex-col divide-y divide-gray-200">
+                  <div className="flex flex-col divide-y divide-gray-200 max-[1091px]:flex-row max-[1091px]:divide-y-0 max-[1091px]:divide-x max-[1091px]:overflow-x-auto max-[1091px]:scrollbar-thin">
                     {champions.length > 0 ? (
                       [...champions]
                         .sort((a, b) => b.games_played - a.games_played)
@@ -409,7 +400,7 @@ const HeaderGameLog = () => {
                           return (
                             <div
                               key={idx}
-                              className="flex flex-col py-3 text-sm text-black gap-2"
+                              className="flex flex-col py-3 text-sm text-black gap-2 max-[1091px]:px-4 flex-shrink-0"
                             >
                               {/* Champion Image + Name + KDA */}
                               <div className="flex justify-between items-center">
@@ -482,8 +473,8 @@ const HeaderGameLog = () => {
           </div>
 
           {/* Match History Table */}
-          <div className="flex-1 bg-white rounded-2xl shadow-lg p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-2xl shadow-lg p-6 w-full max-w-[1000px] overflow-hidden">
+            <div className="flex items-center justify-between mb-6 max-[1091px]:flex-col max-[1091px]:items-start max-[1091px]:gap-4">
               <h1 className="text-2xl font-bold text-black">
                 {playerName?.toString().toUpperCase()}{" "}
                 {selectedTournament !== "ALL"
@@ -494,6 +485,7 @@ const HeaderGameLog = () => {
                 Match History
               </h1>
 
+              {/* Select containers stay in a row */}
               <div className="flex gap-4">
                 <select
                   value={selectedTournament}
@@ -525,84 +517,90 @@ const HeaderGameLog = () => {
                 <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-red-500"></div>
               </div>
             ) : (
-              <table className="w-full border-collapse text-sm text-center">
-                <thead>
-                  <tr>
-                    {[
-                      "DATE",
-                      "RESULT",
-                      "MIN",
-                      "CHAMPION",
-                      "SCORE",
-                      "OPP",
-                      "TOURNAMENT",
-                    ].map((header, idx) => (
-                      <th
-                        key={idx}
-                        onClick={() =>
-                          sortTable(
-                            header === "DATE"
-                              ? "date"
-                              : header === "RESULT"
-                              ? "result"
-                              : header === "MIN"
-                              ? "duration"
-                              : header === "CHAMPION"
-                              ? "champion"
-                              : "date"
-                          )
-                        }
-                        className={`bg-gray-100 font-semibold text-gray-600 py-3 px-2 ${
-                          ["DATE", "RESULT", "MIN", "CHAMPION"].includes(header)
-                            ? "cursor-pointer"
-                            : ""
-                        }`}
-                      >
-                        {header}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {matches.map((match, index) => (
-                    <tr
-                      key={index}
-                      className={`${
-                        index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                      } border-b border-gray-200`}
-                    >
-                      <td className="py-2 px-2 text-black">{match.date}</td>
-                      <td
-                        className={`py-2 px-2 font-bold ${
-                          match.result.toLowerCase() === "victory"
-                            ? "text-blue-500"
-                            : "text-red-500"
-                        }`}
-                      >
-                        {match.result}
-                      </td>
-                      <td className="py-2 px-2 text-black">{match.duration}</td>
-                      <td className="py-2 px-4 text-black">
-                        <div className="flex items-center gap-3 justify-start">
-                          <img
-                            src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${match.champion}.png`}
-                            alt={match.champion}
-                            width={28}
-                            height={28}
-                            className="rounded-md object-cover"
-                          />
-                          <span className="text-left">{match.champion}</span>
-                        </div>
-                      </td>
-                      <td className="py-2 px-2 text-black">{match.score}</td>
-                      <td className="py-2 px-2 text-black">{match.game}</td>
-                      <td className="py-2 px-2 text-black">
-                        {match.tournament}
-                      </td>
+              <div className="w-full overflow-x-auto max-[1091px]:scrollbar-thin max-[1091px]:pb-2">
+                <table className="min-w-[750px] w-full border-collapse text-sm text-center">
+                  <thead>
+                    <tr>
+                      {[
+                        "DATE",
+                        "RESULT",
+                        "MIN",
+                        "CHAMPION",
+                        "SCORE",
+                        "OPP",
+                        "TOURNAMENT",
+                      ].map((header, idx) => (
+                        <th
+                          key={idx}
+                          onClick={() =>
+                            sortTable(
+                              header === "DATE"
+                                ? "date"
+                                : header === "RESULT"
+                                ? "result"
+                                : header === "MIN"
+                                ? "duration"
+                                : header === "CHAMPION"
+                                ? "champion"
+                                : "date"
+                            )
+                          }
+                          className={`bg-gray-100 font-semibold text-gray-600 py-3 px-2 ${
+                            ["DATE", "RESULT", "MIN", "CHAMPION"].includes(
+                              header
+                            )
+                              ? "cursor-pointer"
+                              : ""
+                          }`}
+                        >
+                          {header}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {matches.map((match, index) => (
+                      <tr
+                        key={index}
+                        className={`${
+                          index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                        } border-b border-gray-200`}
+                      >
+                        <td className="py-2 px-2 text-black">{match.date}</td>
+                        <td
+                          className={`py-2 px-2 font-bold ${
+                            match.result.toLowerCase() === "victory"
+                              ? "text-blue-500"
+                              : "text-red-500"
+                          }`}
+                        >
+                          {match.result}
+                        </td>
+                        <td className="py-2 px-2 text-black">
+                          {match.duration}
+                        </td>
+                        <td className="py-2 px-4 text-black">
+                          <div className="flex items-center gap-3 justify-start">
+                            <img
+                              src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${match.champion}.png`}
+                              alt={match.champion}
+                              width={28}
+                              height={28}
+                              className="rounded-md object-cover"
+                            />
+                            <span className="text-left">{match.champion}</span>
+                          </div>
+                        </td>
+                        <td className="py-2 px-2 text-black">{match.score}</td>
+                        <td className="py-2 px-2 text-black">{match.game}</td>
+                        <td className="py-2 px-2 text-black">
+                          {match.tournament}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>
