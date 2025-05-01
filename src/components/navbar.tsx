@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link"; // <-- import Link from next/link
-import SearchBar from "./search"; // adjust the path if needed
 
 export default function Navbar() {
   return (

@@ -47,7 +47,23 @@ const HeaderGameLog = () => {
   const [selectedSeason, setSelectedSeason] = useState<string>("S15");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const [wikiData, setWikiData] = useState<any>(null);
+  type WikiData = {
+    Image?: string;
+    Competitive?: {
+      Team?: string;
+      Role?: string;
+    };
+    "Background Information"?: {
+      Name?: string;
+      Birthday?: string;
+      Residency?: string;
+    };
+    "Social Media & Links"?: {
+      Instagram?: string;
+    };
+  };
+
+  const [wikiData, setWikiData] = useState<WikiData | null>(null);
 
   const [sortState, setSortState] = useState({
     date: true,
