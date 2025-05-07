@@ -1,10 +1,9 @@
 // src/app/match/[id]/page.tsx
 import Navbar from "@/components/navbar";
+import Image from "next/image";
 
 type MatchPageProps = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>; // This matches how Next.js now provides it
 };
 
 type Player = {
@@ -18,7 +17,7 @@ type Player = {
 export default async function MatchPage({ params }: MatchPageProps) {
   const baseUrl = "https://lolespn-api.onrender.com/api";
 
-  const id = params.id;
+  const { id } = await params;
 
   //const res = await fetch(`http://localhost:5000/api/match/${id}`, {
   //  cache: "no-store",
@@ -85,10 +84,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
         <div className="flex items-center justify-between">
           {/* Left Team */}
           <div className="flex items-center gap-4">
-            <img
+            <Image
               src={`https://dpm.lol/esport/teams/${blueTeamSlug}.webp`}
               alt={blueTeamName}
-              className="w-14 h-14 p-1 border-b-4 rounded bg-gray-200"
+              width={56} // Tailwind's w-14 = 56px
+              height={56} // Tailwind's h-14 = 56px
+              className="p-1 border-b-4 rounded bg-gray-200"
               style={{ borderBottomColor: "rgb(83, 131, 232)" }}
             />
 
@@ -104,7 +105,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
           {/* Score & Stats Row */}
           <div className="flex items-center gap-x-12 text-gray-500">
             {/* Blue Team Stats */}
-            <div className="flex items-center gap-1 hidden">
+            {/* <div className="flex items-center gap-1 hidden">
               <img
                 src="/scoreBoardIcons/Grubs.png"
                 className="w-8 h-8"
@@ -133,32 +134,38 @@ export default async function MatchPage({ params }: MatchPageProps) {
               <span className="text-xl font-bold">
                 {matchData.blue_team?.barons}
               </span>
-            </div>
+            </div> */}
             <div className="flex items-center gap-1">
-              <img
+              <Image
                 src="/scoreBoardIcons/tower.png"
-                className="w-8 h-8"
                 alt="Tower"
+                width={32} // w-8 = 32px
+                height={32} // h-8 = 32px
+                className="w-8 h-8"
               />
               <span className="text-xl font-bold">
                 {matchData.blue_team?.towers}
               </span>
             </div>
             <div className="flex items-center gap-1 text-gray-500">
-              <img
+              <Image
                 src="/scoreBoardIcons/gold.png"
-                className="w-8 h-8"
                 alt="Gold"
+                width={32} // w-8 = 32px
+                height={32} // h-8 = 32px
+                className="w-8 h-8"
               />
               <span className="text-xl font-bold">
                 {matchData.blue_team?.gold}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <img
+              <Image
                 src="/scoreBoardIcons/kills.png"
-                className="w-8 h-8"
                 alt="Kill"
+                width={32} // Tailwind w-8 = 32px
+                height={32} // Tailwind h-8 = 32px
+                className="w-8 h-8"
               />
               <span className="text-xl font-bold">
                 {matchData.blue_team?.kills}
@@ -185,10 +192,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
             {/* Red Team Stats */}
             <div className="flex items-center gap-1">
-              <img
+              <Image
                 src="/scoreBoardIcons/kills.png"
-                className="w-8 h-8"
                 alt="Kill"
+                width={32} // Tailwind w-8 = 32px
+                height={32} // Tailwind h-8 = 32px
+                className="w-8 h-8"
               />
 
               <span className="text-xl font-bold">
@@ -196,27 +205,31 @@ export default async function MatchPage({ params }: MatchPageProps) {
               </span>
             </div>
             <div className="flex items-center gap-1 text-gray-500">
-              <img
+              <Image
                 src="/scoreBoardIcons/gold.png"
-                className="w-8 h-8"
                 alt="Gold"
+                width={32} // w-8 = 32px
+                height={32} // h-8 = 32px
+                className="w-8 h-8"
               />
               <span className="text-xl font-bold">
                 {matchData.red_team?.gold}
               </span>
             </div>
             <div className="flex items-center gap-1">
-              <img
+              <Image
                 src="/scoreBoardIcons/tower.png"
-                className="w-8 h-8"
                 alt="Tower"
+                width={32} // w-8 = 32px
+                height={32} // h-8 = 32px
+                className="w-8 h-8"
               />
 
               <span className="text-xl font-bold">
                 {matchData.red_team?.towers}
               </span>
             </div>
-            <div className="flex items-center gap-1 hidden">
+            {/* <div className="flex items-center gap-1 hidden">
               <img
                 src="/scoreBoardIcons/baron.png"
                 className="w-8 h-8"
@@ -238,15 +251,17 @@ export default async function MatchPage({ params }: MatchPageProps) {
               </span>
             </div>
             <div className="flex items-center gap-1 hidden">
-              <img
+              <Image
                 src="/scoreBoardIcons/Grubs.png"
-                className="w-8 h-8"
                 alt="Voidgrub"
+                width={32} // Tailwind w-8 = 32px
+                height={32} // Tailwind h-8 = 32px
+                className="w-8 h-8"
               />
               <span className="text-xl font-bold">
                 {matchData.voidgrubs_red}
               </span>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Team */}
@@ -258,10 +273,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
               <div className="hidden">{matchData.red_team?.dragons}</div>
               <p className="text-sm text-gray-600"></p>
             </div>
-            <img
+            <Image
               src={`https://dpm.lol/esport/teams/${redTeamSlug}.webp`}
               alt={redTeamName}
-              className="w-14 h-14   p-1 border-b-4 bg-gray-200"
+              width={56} // w-14 = 56px
+              height={56} // h-14 = 56px
+              className="p-1 border-b-4 bg-gray-200"
               style={{ borderBottomColor: "rgb(232, 64, 87)" }}
             />
           </div>
@@ -313,10 +330,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
                     className="font-medium border-r border-gray-300"
                   >
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${p.champion}.png`}
                         alt="Champion Icon"
-                        className="w-6 h-6 rounded-full object-cover"
+                        width={24} // w-6 = 24px
+                        height={24} // h-6 = 24px
+                        className="rounded-full object-cover"
                       />
                       {p.player}
                     </div>
@@ -324,11 +343,13 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   <td>
                     <div className="flex gap-1 flex-wrap pl-2.5">
                       {p.items.map((itemUrl: string, index: number) => (
-                        <img
+                        <Image
                           key={index}
                           src={itemUrl}
                           alt={`Item ${index + 1}`}
-                          className="w-5 h-5 rounded-sm"
+                          width={20} // Tailwind w-5 = 20px
+                          height={20} // Tailwind h-5 = 20px
+                          className="rounded-sm"
                         />
                       ))}
                     </div>
@@ -345,7 +366,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
             <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
             <div className="flex gap-2">
               {matchData.blue_team.bans.map((champ: string, i: number) => (
-                <img
+                <Image
                   key={i}
                   src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
                     / /g,
@@ -353,7 +374,9 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   )}.png`}
                   alt={champ}
                   title={champ}
-                  className="w-6 h-6 rounded-full object-cover"
+                  width={24} // Tailwind w-6 = 24px
+                  height={24} // Tailwind h-6 = 24px
+                  className="rounded-full object-cover"
                 />
               ))}
             </div>
@@ -385,10 +408,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
                     className="font-medium border-r border-gray-300"
                   >
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${p.champion}.png`}
                         alt="Champion Icon"
-                        className="w-6 h-6 rounded-full object-cover"
+                        width={24} // w-6 = 24px
+                        height={24} // h-6 = 24px
+                        className="rounded-full object-cover"
                       />
                       {p.player}
                     </div>
@@ -396,11 +421,13 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   <td>
                     <div className="flex gap-1 flex-wrap pl-2.5">
                       {p.items.map((itemUrl: string, index: number) => (
-                        <img
+                        <Image
                           key={index}
                           src={itemUrl}
                           alt={`Item ${index + 1}`}
-                          className="w-5 h-5 rounded-sm"
+                          width={20} // Tailwind w-5 = 20px
+                          height={20} // Tailwind h-5 = 20px
+                          className="rounded-sm"
                         />
                       ))}
                     </div>
@@ -418,7 +445,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
             <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
             <div className="flex gap-2">
               {matchData.red_team.bans.map((champ: string, i: number) => (
-                <img
+                <Image
                   key={i}
                   src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
                     / /g,
@@ -426,7 +453,9 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   )}.png`}
                   alt={champ}
                   title={champ}
-                  className="w-6 h-6 rounded-full object-cover"
+                  width={24} // Tailwind w-6 = 24px
+                  height={24} // Tailwind h-6 = 24px
+                  className="rounded-full object-cover"
                 />
               ))}
             </div>
@@ -462,9 +491,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
               {/* Label */}
               <div className="flex flex-col items-center">
-                <img
+                <Image
                   src="/scoreBoardIcons/Dragon.png"
-                  className="w-9 h-9 mb-1"
+                  alt="Dragon Icon"
+                  width={36} // Tailwind w-9 = 36px
+                  height={36} // Tailwind h-9 = 36px
+                  className="mb-1"
                 />
                 <span className="text-xs">Dragons</span>
               </div>
@@ -511,9 +543,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
               {/* Label */}
               <div className="flex flex-col items-center">
-                <img
+                <Image
                   src="/scoreBoardIcons/baron.png"
-                  className="w-9 h-9 mb-1"
+                  alt="baron Icon"
+                  width={36} // Tailwind w-9 = 36px
+                  height={36} // Tailwind h-9 = 36px
+                  className="mb-1"
                 />
                 <span className="text-xs">Barons</span>
               </div>
@@ -560,9 +595,12 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
               {/* Label */}
               <div className="flex flex-col items-center">
-                <img
+                <Image
                   src="/scoreBoardIcons/Grubs.png"
-                  className="w-9 h-9 mb-1"
+                  alt="Grubs Icon"
+                  width={36} // Tailwind w-9 = 36px
+                  height={36} // Tailwind h-9 = 36px
+                  className="mb-1"
                 />
                 <span className="text-xs">Grubs</span>
               </div>
