@@ -7,7 +7,7 @@ type MatchPageProps = {
   };
 };
 
-export default async function MatchPage({ params }: Awaited<MatchPageProps>) {
+export default async function MatchPage({ params }: MatchPageProps) {
   const baseUrl = "https://lolespn-api.onrender.com/api";
 
   const id = params.id;
