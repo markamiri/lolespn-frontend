@@ -7,6 +7,14 @@ type MatchPageProps = {
   };
 };
 
+type Player = {
+  player: string;
+  champion: string;
+  items: string[];
+  kda: string;
+  cs: string;
+};
+
 export default async function MatchPage({ params }: MatchPageProps) {
   const baseUrl = "https://lolespn-api.onrender.com/api";
 
@@ -293,7 +301,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
               </tr>
             </thead>
             <tbody>
-              {matchData.blue_team.players.map((p, i) => (
+              {matchData.blue_team.players.map((p: Player, i: number) => (
                 <tr
                   key={i}
                   className={`border-b ${
@@ -315,7 +323,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   </td>
                   <td>
                     <div className="flex gap-1 flex-wrap pl-2.5">
-                      {p.items.map((itemUrl, index) => (
+                      {p.items.map((itemUrl: string, index: number) => (
                         <img
                           key={index}
                           src={itemUrl}
@@ -336,7 +344,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
           <div className="mt-3 flex items-center gap-2 pl-1">
             <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
             <div className="flex gap-2">
-              {matchData.blue_team.bans.map((champ, i) => (
+              {matchData.blue_team.bans.map((champ: string, i: number) => (
                 <img
                   key={i}
                   src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
@@ -365,7 +373,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
               </tr>
             </thead>
             <tbody>
-              {matchData.red_team.players.map((p, i) => (
+              {matchData.red_team.players.map((p: Player, i: number) => (
                 <tr
                   key={i}
                   className={`border-b ${
@@ -387,7 +395,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   </td>
                   <td>
                     <div className="flex gap-1 flex-wrap pl-2.5">
-                      {p.items.map((itemUrl, index) => (
+                      {p.items.map((itemUrl: string, index: number) => (
                         <img
                           key={index}
                           src={itemUrl}
@@ -409,7 +417,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
           <div className="mt-3 flex items-center gap-2 pl-1">
             <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
             <div className="flex gap-2">
-              {matchData.red_team.bans.map((champ, i) => (
+              {matchData.red_team.bans.map((champ: string, i: number) => (
                 <img
                   key={i}
                   src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
