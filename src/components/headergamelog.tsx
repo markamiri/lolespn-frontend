@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSearchParams, useParams } from "next/navigation";
+import Link from "next/link";
 
 type Match = {
   date: string;
   game: string;
+  game_link: string;
   result: string;
   duration: string;
   champion: string;
@@ -74,6 +76,7 @@ const HeaderGameLog = () => {
 
   const params = useParams();
   const searchParams = useSearchParams();
+  //const BASE_API_URL = "http://127.0.0.1:5000/api";
   const BASE_API_URL = "https://lolespn-api.onrender.com/api";
 
   const playerId = params.id;
@@ -425,7 +428,7 @@ const HeaderGameLog = () => {
 
                               {/* Win/Loss Bar + Games Played */}
                               <div className="flex justify-between items-center gap-2">
-                                <div className="flex w-[130px] h-5 rounded overflow-hidden">
+                                <div className="flex w-[110px] h-5 rounded overflow-hidden">
                                   <div
                                     className="bg-blue-500 flex items-center justify-center text-white text-[11px] font-bold"
                                     style={{ width: `${winPercent}%` }}
@@ -441,7 +444,7 @@ const HeaderGameLog = () => {
                                     </div>
                                   )}
                                 </div>
-                                <div className="flex gap-2 items-center text-[12px] text-gray-400">
+                                <div className="flex gap-2 items-center text-[11px] text-gray-400">
                                   <span>{champ.games_played} Games</span>
                                   <span
                                     className={`font-semibold ${
@@ -592,7 +595,15 @@ const HeaderGameLog = () => {
                           </div>
                         </td>
                         <td className="py-2 px-2 text-black">{match.score}</td>
-                        <td className="py-2 px-2 text-black">{match.game}</td>
+                        <td className="py-2 px-2 text-black">
+                          <Link
+                            href={`/match/${match.game_link.split("/")[5]}`}
+                          >
+                            <span className="hover:underline cursor-pointer">
+                              {match.game}
+                            </span>
+                          </Link>
+                        </td>
                         <td className="py-2 px-2 text-black">
                           {match.tournament}
                         </td>
