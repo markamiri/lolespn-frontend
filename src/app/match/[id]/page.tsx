@@ -81,9 +81,9 @@ export default async function MatchPage({ params }: MatchPageProps) {
         className="sticky top-[47px] z-40 bg-white border-b px-6 py-5 w-full shadow"
         style={{ borderBottomColor: "rgb(206, 207, 207)" }}
       >
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between ">
           {/* Left Team */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 ">
             <Image
               src={`https://dpm.lol/esport/teams/${blueTeamSlug}.webp`}
               alt={blueTeamName}
@@ -103,7 +103,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
           </div>
 
           {/* Score & Stats Row */}
-          <div className="flex items-center gap-x-12 text-gray-500">
+          <div className="flex items-center gap-x-5 sm:gap-x-12 text-gray-500">
             {/* Blue Team Stats */}
             {/* <div className="flex items-center gap-1 hidden">
               <img
@@ -135,7 +135,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 {matchData.blue_team?.barons}
               </span>
             </div> */}
-            <div className="flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-1">
               <Image
                 src="/scoreBoardIcons/tower.png"
                 alt="Tower"
@@ -147,7 +147,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 {matchData.blue_team?.towers}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-gray-500">
+            <div className="hidden md:flex items-center gap-1 text-gray-500">
               <Image
                 src="/scoreBoardIcons/gold.png"
                 alt="Gold"
@@ -204,7 +204,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 {matchData.red_team?.kills}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-gray-500">
+            <div className="hidden md:flex items-center gap-1 text-gray-500">
               <Image
                 src="/scoreBoardIcons/gold.png"
                 alt="Gold"
@@ -216,7 +216,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 {matchData.red_team?.gold}
               </span>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-1 gap-1">
               <Image
                 src="/scoreBoardIcons/tower.png"
                 alt="Tower"
@@ -265,7 +265,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
           </div>
 
           {/* Right Team */}
-          <div className="flex  gap-4 text-right">
+          <div className="flex  gap-4 text-right ">
             <div>
               <h2 className="text-lg font-semibold text-gray-500 hidden">
                 {redTeamName}
@@ -301,168 +301,8 @@ export default async function MatchPage({ params }: MatchPageProps) {
         </div>
       </div>
 
-      <div className="flex max-w-6xl mx-auto gap-6 mt-6">
-        {/* Left Column: Tables */}
-        <div className="w-2/3 bg-white rounded-lg shadow-md p-4">
-          {/* Blue Team Section */}
-          <h2 className="text-xl font-bold mb-2 text-black">
-            Blue Team Players
-          </h2>
-          <table className="w-full text-sm text-left table-fixed">
-            <thead className="text-gray-700 border-y border-gray-300 font-bold">
-              <tr>
-                <th className="w-[160px] border-r border-gray-300">Player</th>
-                <th className="w-[250px] pl-2.5">Items</th>
-                <th className="w-[80px]">KDA</th>
-                <th className="w-[60px]">CS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {matchData.blue_team.players.map((p: Player, i: number) => (
-                <tr
-                  key={i}
-                  className={`border-b ${
-                    i % 2 === 0 ? "bg-gray-100" : "bg-white"
-                  } hover:bg-gray-200`}
-                >
-                  <td
-                    style={{ color: "rgb(0, 102, 204)" }}
-                    className="font-medium border-r border-gray-300"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${p.champion}.png`}
-                        alt="Champion Icon"
-                        width={24} // w-6 = 24px
-                        height={24} // h-6 = 24px
-                        className="rounded-full object-cover"
-                      />
-                      {p.player}
-                    </div>
-                  </td>
-                  <td>
-                    <div className="flex gap-1 flex-wrap pl-2.5">
-                      {p.items.map((itemUrl: string, index: number) => (
-                        <Image
-                          key={index}
-                          src={itemUrl}
-                          alt={`Item ${index + 1}`}
-                          width={20} // Tailwind w-5 = 20px
-                          height={20} // Tailwind h-5 = 20px
-                          className="rounded-sm"
-                        />
-                      ))}
-                    </div>
-                  </td>
-                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.kda}</td>
-                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.cs}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Blue Team Bans (outside table) */}
-          <div className="mt-3 flex items-center gap-2 pl-1">
-            <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
-            <div className="flex gap-2">
-              {matchData.blue_team.bans.map((champ: string, i: number) => (
-                <Image
-                  key={i}
-                  src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
-                    / /g,
-                    ""
-                  )}.png`}
-                  alt={champ}
-                  title={champ}
-                  width={24} // Tailwind w-6 = 24px
-                  height={24} // Tailwind h-6 = 24px
-                  className="rounded-full object-cover"
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Red Team Section */}
-          <h2 className="text-xl font-bold mb-2 text-black mt-6">
-            Red Team Players
-          </h2>
-          <table className="w-full text-sm text-left table-fixed">
-            <thead className="text-gray-700 border-y border-gray-300 font-bold">
-              <tr>
-                <th className="w-[160px] border-r border-gray-300">Player</th>
-                <th className="w-[250px] pl-2.5">Items</th>
-                <th className="w-[80px]">KDA</th>
-                <th className="w-[60px]">CS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {matchData.red_team.players.map((p: Player, i: number) => (
-                <tr
-                  key={i}
-                  className={`border-b ${
-                    i % 2 === 0 ? "bg-gray-100" : "bg-white"
-                  } hover:bg-gray-200`}
-                >
-                  <td
-                    style={{ color: "rgb(0, 102, 204)" }}
-                    className="font-medium border-r border-gray-300"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Image
-                        src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${p.champion}.png`}
-                        alt="Champion Icon"
-                        width={24} // w-6 = 24px
-                        height={24} // h-6 = 24px
-                        className="rounded-full object-cover"
-                      />
-                      {p.player}
-                    </div>
-                  </td>
-                  <td>
-                    <div className="flex gap-1 flex-wrap pl-2.5">
-                      {p.items.map((itemUrl: string, index: number) => (
-                        <Image
-                          key={index}
-                          src={itemUrl}
-                          alt={`Item ${index + 1}`}
-                          width={20} // Tailwind w-5 = 20px
-                          height={20} // Tailwind h-5 = 20px
-                          className="rounded-sm"
-                        />
-                      ))}
-                    </div>
-                  </td>
-                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.kda}</td>
-                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.cs}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Red Team Bans (outside table) */}
-          {/* Red Team Bans (outside table, inline) */}
-          <div className="mt-3 flex items-center gap-2 pl-1">
-            <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
-            <div className="flex gap-2">
-              {matchData.red_team.bans.map((champ: string, i: number) => (
-                <Image
-                  key={i}
-                  src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
-                    / /g,
-                    ""
-                  )}.png`}
-                  alt={champ}
-                  title={champ}
-                  width={24} // Tailwind w-6 = 24px
-                  height={24} // Tailwind h-6 = 24px
-                  className="rounded-full object-cover"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="w-1/3 flex flex-col gap-8">
+      <div className="flex flex-col md:flex-row max-w-6xl mx-auto gap-6 mt-0 md:mt-6">
+        <div className="w-full md:w-1/3 flex flex-col gap-8 hidden md:block">
           {/* Objectives Comparison Card */}
           <div className="bg-white rounded-lg shadow-md p-4">
             <h3 className="font-bold text-center mb-4 text-gray-700 text-lg">
@@ -624,6 +464,255 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   ></div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        {/* Mobile Comparison Card */}
+        <div className="bg-white rounded-lg shadow-md inline-block border-t border-gray-300 mt-4 text-sm font-medium text-black md:hidden">
+          {/* Header Row: Icons */}
+          <div className="grid grid-cols-6 gap-4 text-center px-4 py-2 items-center border-b border-gray-300">
+            <div></div>
+            <div className="flex justify-center">
+              <Image
+                src="/scoreBoardIcons/gold.png"
+                alt="Gold"
+                width={28}
+                height={28}
+              />
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/scoreBoardIcons/tower.png"
+                alt="Tower"
+                width={28}
+                height={28}
+              />
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/scoreBoardIcons/Dragon.png"
+                alt="Dragon"
+                width={28}
+                height={28}
+              />
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/scoreBoardIcons/Grubs.png"
+                alt="Grubs"
+                width={28}
+                height={28}
+              />
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/scoreBoardIcons/baron.png"
+                alt="Baron"
+                width={28}
+                height={28}
+              />
+            </div>
+          </div>
+
+          {/* Blue Team Row */}
+          <div className="grid grid-cols-6 gap-4 text-center px-4 py-1 items-center">
+            <div className="flex justify-center">
+              <Image
+                src={`https://dpm.lol/esport/teams/${blueTeamSlug}.webp`}
+                alt={blueTeamName}
+                width={45}
+                height={45}
+                className="p-1 border-b-4 rounded bg-gray-200"
+                style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+              />
+            </div>
+            <div className="font-bold">{matchData.blue_team?.gold}</div>
+            <div>{matchData.blue_team?.towers}</div>
+            <div>{matchData.blue_team?.dragons}</div>
+            <div>{matchData.voidgrubs_blue}</div>
+            <div>{matchData.blue_team?.barons}</div>
+          </div>
+
+          {/* Red Team Row */}
+          <div className="grid grid-cols-6 gap-4 text-center px-4 py-1 items-center">
+            <div className="flex justify-center">
+              <Image
+                src={`https://dpm.lol/esport/teams/${redTeamSlug}.webp`}
+                alt={redTeamName}
+                width={45}
+                height={45}
+                className="p-1 border-b-4 bg-gray-200"
+                style={{ borderBottomColor: "rgb(232, 64, 87)" }}
+              />
+            </div>
+            <div className="font-bold">{matchData.red_team?.gold}</div>
+            <div>{matchData.red_team?.towers}</div>
+            <div>{matchData.red_team?.dragons}</div>
+            <div>{matchData.voidgrubs_red}</div>
+            <div>{matchData.red_team?.barons}</div>
+          </div>
+        </div>
+
+        {/* Left Column: Tables */}
+        <div className="w-full md:w-2/3 bg-white rounded-lg shadow-md p-4 overflow-hidden">
+          {/* Blue Team Section */}
+          <h2 className="text-xl font-bold mb-2 text-black">
+            Blue Team Players
+          </h2>
+          <table className="w-full text-sm text-left table-fixed">
+            <thead className="text-gray-700 border-y border-gray-300 font-bold">
+              <tr>
+                <th className="w-[110px] md:w-[160px] border-r border-gray-300">
+                  Player
+                </th>
+                <th className="w-[190px] md:w-[250px] pl-2.5">Items</th>
+                <th className="w-[60px] md:w-[80px]">KDA</th>
+                <th className="w-[60px]">CS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {matchData.blue_team.players.map((p: Player, i: number) => (
+                <tr
+                  key={i}
+                  className={`border-b ${
+                    i % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-gray-200`}
+                >
+                  <td
+                    style={{ color: "rgb(0, 102, 204)" }}
+                    className="font-medium border-r border-gray-300"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${p.champion}.png`}
+                        alt="Champion Icon"
+                        width={24} // w-6 = 24px
+                        height={24} // h-6 = 24px
+                        className="rounded-full object-cover"
+                      />
+                      {p.player}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="flex gap-1 flex-wrap pl-2.5">
+                      {p.items.map((itemUrl: string, index: number) => (
+                        <Image
+                          key={index}
+                          src={itemUrl}
+                          alt={`Item ${index + 1}`}
+                          width={20} // Tailwind w-5 = 20px
+                          height={20} // Tailwind h-5 = 20px
+                          className="rounded-sm"
+                        />
+                      ))}
+                    </div>
+                  </td>
+                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.kda}</td>
+                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.cs}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Blue Team Bans (outside table) */}
+          <div className="mt-3 flex items-center gap-2 pl-1">
+            <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
+            <div className="flex gap-2">
+              {matchData.blue_team.bans.map((champ: string, i: number) => (
+                <Image
+                  key={i}
+                  src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
+                    / /g,
+                    ""
+                  )}.png`}
+                  alt={champ}
+                  title={champ}
+                  width={24} // Tailwind w-6 = 24px
+                  height={24} // Tailwind h-6 = 24px
+                  className="rounded-full object-cover"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Red Team Section */}
+          <h2 className="text-xl font-bold mb-2 text-black mt-6">
+            Red Team Players
+          </h2>
+          <table className="w-full text-sm text-left table-fixed">
+            <thead className="text-gray-700 border-y border-gray-300 font-bold">
+              <tr>
+                <th className="w-[110px] md:w-[160px] border-r border-gray-300">
+                  Player
+                </th>
+                <th className="w-[190px] md:w-[250px] pl-2.5">Items</th>
+                <th className="w-[60px] md:w-[80px]">KDA</th>
+                <th className="w-[60px]">CS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {matchData.red_team.players.map((p: Player, i: number) => (
+                <tr
+                  key={i}
+                  className={`border-b ${
+                    i % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } hover:bg-gray-200`}
+                >
+                  <td
+                    style={{ color: "rgb(0, 102, 204)" }}
+                    className="font-medium border-r border-gray-300"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Image
+                        src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${p.champion}.png`}
+                        alt="Champion Icon"
+                        width={24} // w-6 = 24px
+                        height={24} // h-6 = 24px
+                        className="rounded-full object-cover"
+                      />
+                      {p.player}
+                    </div>
+                  </td>
+                  <td>
+                    <div className="flex gap-1 flex-wrap pl-2.5">
+                      {p.items.map((itemUrl: string, index: number) => (
+                        <Image
+                          key={index}
+                          src={itemUrl}
+                          alt={`Item ${index + 1}`}
+                          width={20} // Tailwind w-5 = 20px
+                          height={20} // Tailwind h-5 = 20px
+                          className="rounded-sm"
+                        />
+                      ))}
+                    </div>
+                  </td>
+                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.kda}</td>
+                  <td style={{ color: "rgb(108, 109, 111)" }}>{p.cs}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Red Team Bans (outside table) */}
+          {/* Red Team Bans (below red team table) */}
+          <div className="mt-3 flex items-center gap-2 pl-1">
+            <h3 className="text-sm font-semibold text-gray-600 mb-0">Bans:</h3>
+            <div className="flex gap-2">
+              {matchData.red_team.bans.map((champ: string, i: number) => (
+                <Image
+                  key={i}
+                  src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${champ.replace(
+                    / /g,
+                    ""
+                  )}.png`}
+                  alt={champ}
+                  title={champ}
+                  width={24}
+                  height={24}
+                  className="rounded-full object-cover"
+                />
+              ))}
             </div>
           </div>
         </div>

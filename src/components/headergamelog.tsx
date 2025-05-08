@@ -222,10 +222,12 @@ const HeaderGameLog = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center"
                   >
-                    <img
+                    <Image
                       src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Emblem.png"
                       alt="Instagram"
-                      className="w-5 h-5 object-contain"
+                      width={20} // w-5 = 20px
+                      height={20} // h-5 = 20px
+                      className="object-contain"
                     />
                   </a>
                 )}
@@ -408,7 +410,7 @@ const HeaderGameLog = () => {
                               {/* Champion Image + Name + KDA */}
                               <div className="flex justify-between items-center">
                                 <div className="flex items-center gap-2 text-left">
-                                  <img
+                                  <Image
                                     src={`https://ddragon.leagueoflegends.com/cdn/15.9.1/img/champion/${champ.champion}.png`}
                                     alt={champ.champion}
                                     width={24}
@@ -584,7 +586,7 @@ const HeaderGameLog = () => {
                         </td>
                         <td className="py-2 px-4 text-black">
                           <div className="flex items-center gap-3 justify-start">
-                            <img
+                            <Image
                               src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${match.champion}.png`}
                               alt={match.champion}
                               width={28}

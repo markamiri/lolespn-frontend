@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       "static.wikia.nocookie.net",
       "dpm.lol",
       "ddragon.leagueoflegends.com",
+      "logos-world.net",
     ],
   },
 };
