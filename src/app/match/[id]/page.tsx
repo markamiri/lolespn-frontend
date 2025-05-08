@@ -103,7 +103,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
           </div>
 
           {/* Score & Stats Row */}
-          <div className="flex items-center gap-x-5 sm:gap-x-12 text-gray-500">
+          <div className="flex items-center gap-x-4 sm:gap-x-12 text-gray-500">
             {/* Blue Team Stats */}
             {/* <div className="flex items-center gap-1 hidden">
               <img
@@ -174,7 +174,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
             <div>
               {matchData.blue_team?.team_name?.split(" ").at(-1) === "WIN" && (
-                <span className="text-black text-xl">◀</span> // left arrow
+                <span className="font-mono text-xl text-black">&#9654;</span>
               )}
             </div>
 
@@ -186,7 +186,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
 
             <div>
               {matchData.red_team?.team_name?.split(" ").at(-1) === "WIN" && (
-                <span className="text-black text-sm">▶</span> // right arrow
+                <span className="font-mono text-xl text-black">&#9654;</span>
               )}
             </div>
 
@@ -565,8 +565,8 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 <th className="w-[110px] md:w-[160px] border-r border-gray-300">
                   Player
                 </th>
-                <th className="w-[190px] md:w-[250px] pl-2.5">Items</th>
-                <th className="w-[60px] md:w-[80px]">KDA</th>
+                <th className="w-[180px] md:w-[250px] pl-2.5">Items</th>
+                <th className="w-[50px] md:w-[80px]">KDA</th>
                 <th className="w-[60px]">CS</th>
               </tr>
             </thead>
@@ -645,8 +645,8 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 <th className="w-[110px] md:w-[160px] border-r border-gray-300">
                   Player
                 </th>
-                <th className="w-[190px] md:w-[250px] pl-2.5">Items</th>
-                <th className="w-[60px] md:w-[80px]">KDA</th>
+                <th className="w-[180px] md:w-[250px] pl-2.5">Items</th>
+                <th className="w-[50px] md:w-[80px]">KDA</th>
                 <th className="w-[60px]">CS</th>
               </tr>
             </thead>
