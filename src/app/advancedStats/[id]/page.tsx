@@ -326,20 +326,18 @@ export default function AdvancedStatsPage() {
         </div>
 
         {/* Bench Header */}
-        <div className="grid grid-cols-13 font-bold text-xs text-gray-500 pt-2 pb-1 mt-5">
-          <div className="flex items-center gap-2 mb-4">
-            <Image
-              src={`https://dpm.lol/esport/teams/${redTeamSlug}.webp`}
-              alt={redTeamName ?? "Blue Team"}
-              width={56}
-              height={56}
-              className="p-1 border-b-4 rounded bg-gray-200"
-              style={{ borderBottomColor: "rgb(83, 131, 232)" }}
-            />
-            <h2 className="text-lg font-bold text-black">
-              {redTeamName ?? "Red Team"}
-            </h2>
-          </div>
+        <div className="flex items-center gap-2 mb-4 mt-5">
+          <Image
+            src={`https://dpm.lol/esport/teams/${redTeamSlug}.webp`}
+            alt={redTeamName ?? "red Team"}
+            width={56}
+            height={56}
+            className="p-1 border-b-4 rounded bg-gray-200"
+            style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+          />
+          <h2 className="text-lg font-bold text-black">
+            {redTeamName ?? "red Team"}
+          </h2>
         </div>
 
         {/* Red Team Table Wrapper */}
