@@ -4,7 +4,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/navbar";
 
-type FullStats = any; // You can replace `any` with a proper type if known
+type FullStats = {
+  match_id: string;
+  champions: string[];
+  players: string[];
+  metrics: {
+    [metricName: string]: {
+      blue: string[];
+      red: string[];
+    };
+  };
+};
 
 export default function AdvancedStatsPage() {
   const searchParams = useSearchParams();
@@ -174,33 +184,45 @@ export default function AdvancedStatsPage() {
         )}
       </div>
 
-      <div className="bg-white rounded-lg shadow-md p-4 max-w-4xl mx-auto">
+      <div className="bg-white rounded-lg shadow-md p-4 max-w-6xl mx-auto">
         <div className="flex items-center gap-2 mb-4">
-          <img
-            src="/team-logo.png"
-            alt="Golden State Warriors"
-            className="w-8 h-8"
+          <Image
+            src={`https://dpm.lol/esport/teams/${blueTeamSlug}.webp`}
+            alt={blueTeamName ?? "Blue Team"}
+            width={56}
+            height={56}
+            className="p-1 border-b-4 rounded bg-gray-200"
+            style={{ borderBottomColor: "rgb(83, 131, 232)" }}
           />
-          <h2 className="text-lg font-bold">Golden State Warriors</h2>
+          <h2 className="text-lg font-bold text-black">
+            {blueTeamName ?? "Blue Team"}
+          </h2>
         </div>
 
         {/* Table Header */}
         <div className="grid grid-cols-13 font-bold text-xs text-gray-500 border-b pb-1">
           <div className="col-span-2">STARTERS</div>
-          <div>MIN</div>
-          <div>FG</div>
-          <div>3PT</div>
-          <div>FT</div>
-          <div>OREB</div>
-          <div>DREB</div>
-          <div>REB</div>
-          <div>AST</div>
-          <div>STL</div>
-          <div>BLK</div>
-          <div>TO</div>
-          <div>PF</div>
-          <div>+/-</div>
-          <div>PTS</div>
+          <div>CS</div>
+          <div>CSD@15</div>
+          <div>CSM</div>
+          <div>DMG%</div>
+          <div>DPM</div>
+          <div>Damage dealt to buildings</div>
+          <div>Deaths</div>
+          <div>GD@15</div>
+          <div>GOLD%</div>
+          <div>GPM</div>
+          <div>Golds</div>
+          <div>K+A Per Minute</div>
+          <div>KDA</div>
+          <div>KP%</div>
+          <div>Kills</div>
+          <div>LVLD@15</div>
+          <div>Level</div>
+          <div>Role</div>
+          <div>Solo kills</div>
+          <div>Time ccing others</div>
+          <div>Total damage taken</div>
         </div>
 
         {/* Starters */}
@@ -295,7 +317,10 @@ export default function AdvancedStatsPage() {
             key={i}
             className="grid grid-cols-13 text-sm text-gray-800 border-b py-1"
           >
-            <div className="col-span-2 text-blue-600">{player[0]}</div>
+            <div className="col-span-2 text-blue-600">
+              {fullStats?.players[i]}
+            </div>
+
             {player.slice(1).map((stat, j) => (
               <div key={j}>{stat}</div>
             ))}
@@ -304,6 +329,19 @@ export default function AdvancedStatsPage() {
 
         {/* Bench Header */}
         <div className="grid grid-cols-13 font-bold text-xs text-gray-500 border-b pt-2 pb-1">
+          <div className="flex items-center gap-2 mb-4">
+            <Image
+              src={`https://dpm.lol/esport/teams/${redTeamSlug}.webp`}
+              alt={redTeamName ?? "Blue Team"}
+              width={56}
+              height={56}
+              className="p-1 border-b-4 rounded bg-gray-200"
+              style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+            />
+            <h2 className="text-lg font-bold text-black">
+              {redTeamName ?? "Red Team"}
+            </h2>
+          </div>
           <div className="col-span-2">BENCH</div>
           <div>MIN</div>
           <div>FG</div>
@@ -430,7 +468,10 @@ export default function AdvancedStatsPage() {
             key={i}
             className="grid grid-cols-13 text-sm text-gray-800 border-b py-1"
           >
-            <div className="col-span-2 text-blue-600">{player[0]}</div>
+            <div className="col-span-2 text-blue-600">
+              {fullStats?.players[i + 4]}
+            </div>
+
             {player.slice(1).map((stat, j) => (
               <div key={j}>{stat}</div>
             ))}
