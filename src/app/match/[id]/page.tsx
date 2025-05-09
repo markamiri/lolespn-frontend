@@ -1,7 +1,7 @@
 // src/app/match/[id]/page.tsx
 import Navbar from "@/components/navbar";
 import Image from "next/image";
-
+import Link from "next/link";
 type MatchPageProps = {
   params: Promise<{ id: string }>; // This matches how Next.js now provides it
 };
@@ -295,9 +295,30 @@ export default async function MatchPage({ params }: MatchPageProps) {
           <button className="text-gray-700 hover:text-black">
             Play-by-Play
           </button>
-          <button className="text-gray-700 hover:text-black">
-            Player Stats
-          </button>
+          <Link
+            href={{
+              pathname: `/advancedStats/${id}`,
+              query: {
+                blueTeamSlug: blueTeamSlug,
+                blueTeamName: blueTeamName,
+                bluegold: matchData.blue_team?.gold,
+                bluetowers: matchData.blue_team?.towers,
+                bluekills: matchData.blue_team?.kills,
+                redTeamSlug: redTeamSlug,
+                redTeamName: redTeamName,
+                redgold: matchData.red_team?.gold,
+                redtowers: matchData.red_team?.towers,
+                redkills: matchData.red_team?.kills,
+                gameTime: matchData.game_time,
+                redWin: matchData.red_team?.team_name,
+                blueWin: matchData.blue_team?.team_name,
+              },
+            }}
+          >
+            <button className="text-gray-700 hover:text-black">
+              Advanced Stats
+            </button>
+          </Link>
         </div>
       </div>
 
