@@ -172,7 +172,7 @@ export default function AdvancedStatsPage() {
       </div>
 
       {/* Advanced stats data */}
-      <div className="p-6">
+      <div className="p-6 hidden">
         {loading ? (
           <p className="text-gray-500">Loading full stats...</p>
         ) : fullStats ? (
@@ -183,8 +183,23 @@ export default function AdvancedStatsPage() {
           <p className="text-red-500">Failed to load stats.</p>
         )}
       </div>
+      {/* Sticky Sub-Navigation Bar */}
+      <div className=" top-[135px] z-30 bg-white border-b border-gray-200">
+        <div className="flex justify-start gap-6 px-6 py-3 text-sm font-medium text-black">
+          <div className="relative">
+            <button className="text-black">Box Score</button>
+          </div>
+          <button className="text-gray-700 hover:text-black">
+            Play-by-Play
+          </button>
+          <div className="relative">
+            <button className="text-black">Advanced Stats</button>
+            <div className="absolute bottom-[-1px] left-0 w-full h-[3px] bg-red-600 rounded"></div>
+          </div>
+        </div>
+      </div>
 
-      <div className="bg-white rounded-lg shadow-md p-4 max-w-6xl mx-auto">
+      <div className="bg-white rounded-lg shadow-md p-4 max-w-[78rem] mx-auto pb-10 mt-3">
         <div className="flex items-center gap-2 mb-4">
           <Image
             src={`https://dpm.lol/esport/teams/${blueTeamSlug}.webp`}
@@ -199,136 +214,119 @@ export default function AdvancedStatsPage() {
           </h2>
         </div>
 
-        {/* Table Header */}
-        <div className="grid grid-cols-13 font-bold text-xs text-gray-500 border-b pb-1">
-          <div className="col-span-2">STARTERS</div>
-          <div>CS</div>
-          <div>CSD@15</div>
-          <div>CSM</div>
-          <div>DMG%</div>
-          <div>DPM</div>
-          <div>Damage dealt to buildings</div>
-          <div>Deaths</div>
-          <div>GD@15</div>
-          <div>GOLD%</div>
-          <div>GPM</div>
-          <div>Golds</div>
-          <div>K+A Per Minute</div>
-          <div>KDA</div>
-          <div>KP%</div>
-          <div>Kills</div>
-          <div>LVLD@15</div>
-          <div>Level</div>
-          <div>Role</div>
-          <div>Solo kills</div>
-          <div>Time ccing others</div>
-          <div>Total damage taken</div>
+        {/* Blue Team Table Wrapper */}
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[1000px] text-[13px] text-center table-fixed border-collapse">
+            <thead
+              style={{ color: "rgb(72, 73, 74)" }}
+              className="font-bold uppercase border-b border-gray-300 bg-gray-50"
+            >
+              <tr>
+                <th className="text-left px-2 py-2 w-[90px]"></th>
+                <th className="w-[25px]"></th>
+                <th>Level</th>
+                <th>LVLD@15</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>Assists</th>
+                <th>KDA</th>
+                <th>KP%</th>
+                <th>CSM</th>
+                <th>CSD@15</th>
+                <th>Golds</th>
+                <th>GD@15</th>
+                <th>DMG</th>
+                <th>DMG Taken</th>
+                <th>CC Time</th>
+                <th>Solo Kill</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fullStats?.players?.slice(0, 5).map((playerName, i) => (
+                <tr
+                  key={i}
+                  className="border-b border-gray-200 odd:bg-white even:bg-gray-50"
+                  style={{ color: "rgb(72, 73, 74)" }}
+                >
+                  <td className="text-blue-600 text-left px-2 py-2 whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <span>{playerName}</span>
+                    </div>
+                  </td>
+                  <td className=" border-r border-gray-300">
+                    <Image
+                      src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${fullStats?.champions[i]}.png`}
+                      alt={playerName}
+                      width={20}
+                      height={20}
+                      className="rounded-full object-cover"
+                    />
+                  </td>
+                  <td>{fullStats?.metrics?.Level?.blue?.[i]}</td>
+                  <td>
+                    {fullStats?.metrics?.["LVLD@15"]?.blue?.[i]} (
+                    {(
+                      Number(fullStats?.metrics?.["XPD@15"]?.blue?.[i]) / 1000
+                    ).toFixed(1)}
+                    k )
+                  </td>
+                  <td>{fullStats?.metrics?.Kills?.blue?.[i]}</td>
+                  <td>{fullStats?.metrics?.Deaths?.blue?.[i]}</td>
+                  <td>{fullStats?.metrics?.Assists?.blue?.[i]}</td>
+                  <td>{fullStats?.metrics?.KDA?.blue?.[i]}</td>
+                  <td>{fullStats?.metrics?.["KP%"]?.blue?.[i]}</td>
+                  <td>
+                    {fullStats?.metrics?.CSM?.blue?.[i]} (
+                    {fullStats?.metrics?.CS?.blue?.[i]})
+                  </td>
+                  <td>{fullStats?.metrics?.["CSD@15"]?.blue?.[i]}</td>
+                  <td>
+                    <span className="block">
+                      {fullStats?.metrics?.Golds?.blue?.[i]
+                        ? `${(
+                            Number(fullStats.metrics.Golds.blue[i]) / 1000
+                          ).toFixed(1)}k`
+                        : "0"}
+                    </span>
+                  </td>
+                  <td>{fullStats?.metrics?.["GD@15"]?.blue?.[i]}</td>
+                  <td>
+                    <span className="block">
+                      {fullStats?.metrics?.["Total damage to Champion"]?.blue?.[
+                        i
+                      ]
+                        ? `${(
+                            Number(
+                              fullStats.metrics["Total damage to Champion"]
+                                .blue[i]
+                            ) / 1000
+                          ).toFixed(1)}k`
+                        : "0"}
+                    </span>
+                  </td>
+                  <td>
+                    {fullStats?.metrics?.["Total damage taken"]?.blue?.[i]
+                      ? `${(
+                          Number(
+                            fullStats.metrics["Total damage taken"].blue[i]
+                          ) / 1000
+                        ).toFixed(1)}k`
+                      : "0"}
+                  </td>
+                  <td>
+                    {fullStats?.metrics?.["Time ccing others"]?.blue?.[i]}
+                  </td>
+                  <td>
+                    {fullStats?.metrics?.["Solo Kills"]?.blue?.[i] || "0"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        {/* Starters */}
-        {[
-          [
-            "Draymond Green #23",
-            "29",
-            "3-10",
-            "1-6",
-            "2-2",
-            "0",
-            "4",
-            "4",
-            "5",
-            "1",
-            "1",
-            "2",
-            "1",
-            "-3",
-            "9",
-          ],
-          [
-            "Jimmy Butler III #10",
-            "34",
-            "6-13",
-            "2-4",
-            "3-5",
-            "2",
-            "5",
-            "7",
-            "4",
-            "1",
-            "0",
-            "2",
-            "2",
-            "-4",
-            "17",
-          ],
-          [
-            "Quinten Post #21",
-            "3",
-            "0-0",
-            "0-0",
-            "0-0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "-13",
-            "0",
-          ],
-          [
-            "Buddy Hield #7",
-            "29",
-            "5-14",
-            "4-9",
-            "1-1",
-            "1",
-            "2",
-            "3",
-            "1",
-            "1",
-            "0",
-            "2",
-            "2",
-            "-9",
-            "15",
-          ],
-          [
-            "Brandin Podziemski #2",
-            "33",
-            "4-9",
-            "1-4",
-            "2-2",
-            "2",
-            "4",
-            "6",
-            "6",
-            "2",
-            "0",
-            "2",
-            "0",
-            "+1",
-            "11",
-          ],
-        ].map((player, i) => (
-          <div
-            key={i}
-            className="grid grid-cols-13 text-sm text-gray-800 border-b py-1"
-          >
-            <div className="col-span-2 text-blue-600">
-              {fullStats?.players[i]}
-            </div>
-
-            {player.slice(1).map((stat, j) => (
-              <div key={j}>{stat}</div>
-            ))}
-          </div>
-        ))}
-
         {/* Bench Header */}
-        <div className="grid grid-cols-13 font-bold text-xs text-gray-500 border-b pt-2 pb-1">
+        <div className="grid grid-cols-13 font-bold text-xs text-gray-500 pt-2 pb-1 mt-5">
           <div className="flex items-center gap-2 mb-4">
             <Image
               src={`https://dpm.lol/esport/teams/${redTeamSlug}.webp`}
@@ -342,141 +340,118 @@ export default function AdvancedStatsPage() {
               {redTeamName ?? "Red Team"}
             </h2>
           </div>
-          <div className="col-span-2">BENCH</div>
-          <div>MIN</div>
-          <div>FG</div>
-          <div>3PT</div>
-          <div>FT</div>
-          <div>OREB</div>
-          <div>DREB</div>
-          <div>REB</div>
-          <div>AST</div>
-          <div>STL</div>
-          <div>BLK</div>
-          <div>TO</div>
-          <div>PF</div>
-          <div>+/-</div>
-          <div>PTS</div>
         </div>
 
-        {/* Bench */}
-        {[
-          [
-            "Jonathan Kuminga #00",
-            "26",
-            "8-11",
-            "1-3",
-            "1-4",
-            "1",
-            "4",
-            "5",
-            "1",
-            "0",
-            "0",
-            "2",
-            "1",
-            "-8",
-            "18",
-          ],
-          [
-            "Kevon Looney #5",
-            "3",
-            "0-0",
-            "0-0",
-            "0-0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "-10",
-            "0",
-          ],
-          [
-            "Braxton Key #12",
-            "4",
-            "1-1",
-            "0-0",
-            "0-0",
-            "0",
-            "2",
-            "2",
-            "1",
-            "0",
-            "0",
-            "1",
-            "0",
-            "-3",
-            "2",
-          ],
-          [
-            "Kevin Knox II #31",
-            "9",
-            "1-3",
-            "0-1",
-            "1-2",
-            "1",
-            "1",
-            "2",
-            "0",
-            "1",
-            "0",
-            "1",
-            "1",
-            "-6",
-            "3",
-          ],
-          [
-            "Trayce Jackson-Davis #32",
-            "19",
-            "6-6",
-            "0-0",
-            "3-5",
-            "2",
-            "4",
-            "6",
-            "1",
-            "1",
-            "1",
-            "4",
-            "1",
-            "-15",
-            "15",
-          ],
-          [
-            "Gui Santos #15",
-            "8",
-            "0-0",
-            "0-0",
-            "0-0",
-            "0",
-            "2",
-            "2",
-            "1",
-            "0",
-            "0",
-            "1",
-            "1",
-            "-4",
-            "0",
-          ],
-        ].map((player, i) => (
-          <div
-            key={i}
-            className="grid grid-cols-13 text-sm text-gray-800 border-b py-1"
-          >
-            <div className="col-span-2 text-blue-600">
-              {fullStats?.players[i + 4]}
-            </div>
+        {/* Red Team Table Wrapper */}
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[1000px] text-[13px] text-center table-fixed border-collapse">
+            <thead
+              style={{ color: "rgb(72, 73, 74)" }}
+              className="font-bold uppercase border-b border-gray-300 bg-gray-50"
+            >
+              <tr>
+                <th className="text-left px-2 py-2 w-[90px]"></th>
+                <th className="w-[25px]"></th>
+                <th>Level</th>
+                <th>LVLD@15</th>
+                <th>Kills</th>
+                <th>Deaths</th>
+                <th>Assists</th>
+                <th>KDA</th>
+                <th>KP%</th>
+                <th>CSM</th>
+                <th>CSD@15</th>
+                <th>Golds</th>
+                <th>GD@15</th>
+                <th>DMG</th>
+                <th>DMG Taken</th>
+                <th>CC Time</th>
+                <th>Solo Kill</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fullStats?.players?.slice(5, 10).map((playerName, i) => (
+                <tr
+                  key={i}
+                  className="border-b border-gray-200 odd:bg-white even:bg-gray-50"
+                  style={{ color: "rgb(72, 73, 74)" }}
+                >
+                  <td className="text-blue-600 text-left px-2 py-2 whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <span>{playerName}</span>
+                    </div>
+                  </td>
+                  <td className=" border-r border-gray-300">
+                    <Image
+                      src={`https://ddragon.leagueoflegends.com/cdn/15.8.1/img/champion/${
+                        fullStats?.champions[i + 5]
+                      }.png`}
+                      alt={playerName}
+                      width={20}
+                      height={20}
+                      className="rounded-full object-cover"
+                    />
+                  </td>
 
-            {player.slice(1).map((stat, j) => (
-              <div key={j}>{stat}</div>
-            ))}
-          </div>
-        ))}
+                  <td>{fullStats?.metrics?.Level?.red?.[i]}</td>
+                  <td>
+                    {fullStats?.metrics?.["LVLD@15"]?.red?.[i]} (
+                    {(
+                      Number(fullStats?.metrics?.["XPD@15"]?.red?.[i]) / 1000
+                    ).toFixed(1)}
+                    k )
+                  </td>
+                  <td>{fullStats?.metrics?.Kills?.red?.[i]}</td>
+                  <td>{fullStats?.metrics?.Deaths?.red?.[i]}</td>
+                  <td>{fullStats?.metrics?.Assists?.red?.[i]}</td>
+                  <td>{fullStats?.metrics?.KDA?.red?.[i]}</td>
+                  <td>{fullStats?.metrics?.["KP%"]?.red?.[i]}</td>
+                  <td>
+                    {fullStats?.metrics?.CSM?.red?.[i]} (
+                    {fullStats?.metrics?.CS?.red?.[i]})
+                  </td>
+                  <td>{fullStats?.metrics?.["CSD@15"]?.red?.[i]}</td>
+                  <td>
+                    <span className="block">
+                      {fullStats?.metrics?.Golds?.red?.[i]
+                        ? `${(
+                            Number(fullStats.metrics.Golds.red[i]) / 1000
+                          ).toFixed(1)}k`
+                        : "0"}
+                    </span>
+                  </td>
+                  <td>{fullStats?.metrics?.["GD@15"]?.red?.[i]}</td>
+                  <td>
+                    <span className="block">
+                      {fullStats?.metrics?.["Total damage to Champion"]?.red?.[
+                        i
+                      ]
+                        ? `${(
+                            Number(
+                              fullStats.metrics["Total damage to Champion"].red[
+                                i
+                              ]
+                            ) / 1000
+                          ).toFixed(1)}k`
+                        : "0"}
+                    </span>
+                  </td>
+                  <td>
+                    {fullStats?.metrics?.["Total damage taken"]?.red?.[i]
+                      ? `${(
+                          Number(
+                            fullStats.metrics["Total damage taken"].red[i]
+                          ) / 1000
+                        ).toFixed(1)}k`
+                      : "0"}
+                  </td>
+                  <td>{fullStats?.metrics?.["Time ccing others"]?.red?.[i]}</td>
+                  <td>{fullStats?.metrics?.["Solo Kills"]?.red?.[i] || "0"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
