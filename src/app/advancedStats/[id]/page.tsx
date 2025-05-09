@@ -333,7 +333,7 @@ export default function AdvancedStatsPage() {
             width={56}
             height={56}
             className="p-1 border-b-4 rounded bg-gray-200"
-            style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+            style={{ borderBottomColor: "rgb(232, 64, 87)" }}
           />
           <h2 className="text-lg font-bold text-black">
             {redTeamName ?? "red Team"}
