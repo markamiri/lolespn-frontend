@@ -36,11 +36,11 @@ export default function AdvancedStatsPage() {
 
   const [fullStats, setFullStats] = useState<FullStats | null>(null);
   const [loading, setLoading] = useState(true);
-
+  const baseUrl = "https://lolespn-api.onrender.com/api";
   useEffect(() => {
     if (!id) return;
 
-    fetch(`http://localhost:5000/api/match/${id}/fullstats`)
+    fetch(`${baseUrl}/match/${id}/fullstats`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch match stats");
         return res.json();
