@@ -424,7 +424,7 @@ const HeaderGameLog = () => {
                                 <div
                                   className={`font-bold ${kdaColor} text-right`}
                                 >
-                                  {champ.kda}:1 KDA
+                                  {champ.kda} KDA
                                 </div>
                               </div>
 

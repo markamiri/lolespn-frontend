@@ -37,6 +37,8 @@ export default function AdvancedStatsPage() {
   const [fullStats, setFullStats] = useState<FullStats | null>(null);
   const [loading, setLoading] = useState(true);
   const baseUrl = "https://lolespn-api.onrender.com/api";
+
+  //const baseUrl = "http://127.0.0.1:5000/api";
   useEffect(() => {
     if (!id) return;
 

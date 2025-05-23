@@ -16,6 +16,7 @@ type Player = {
 
 export default async function MatchPage({ params }: MatchPageProps) {
   const baseUrl = "https://lolespn-api.onrender.com/api";
+  //const baseUrl = "http://127.0.0.1:5000/api";
 
   const { id } = await params;
 
