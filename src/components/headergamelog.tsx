@@ -319,8 +319,18 @@ const HeaderGameLog = () => {
         </div>
       </div>
 
+      <div className="flex justify-center sm:hidden ">
+        <Image
+          src="/lolespnlogo.webp"
+          alt="LoLESPN"
+          width={200} // Wider
+          height={150} // Shorter = rectangle
+          className="rounded-md pt-4"
+        />
+      </div>
+
       {/* Matches Section */}
-      <div className="p-5">
+      <div className="pt-5 sm:p-5">
         <div className="flex gap-6 max-[1091px]:flex-col">
           {/* Overall record card */}
           <div className="bg-white rounded-2xl shadow-md p-6 w-[330px] max-[1091px]:w-[100%] flex flex-col items-start text-black text-lg font-semibold self-start">
