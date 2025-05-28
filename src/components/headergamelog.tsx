@@ -190,7 +190,7 @@ const HeaderGameLog = () => {
     <div>
       {/* Header Section */}
       <div className="w-full bg-white font-sans rounded-none shadow pt-3 px-5">
-        <div className="flex flex-row justify-between items-center gap-0 pb-0 mb-0 max-[1091px]:flex-col max-[1091px]:items-center max-[1091px]:pb-0 max-[1091px]:mb-0">
+        <div className="flex flex-row justify-between items-center gap-0 pb-0 mb-0 max-[1091px]:flex-col max-[1091px]:items-center max-[1091px]:pb-0 max-[1091px]:mb-0 ">
           {/* Left: Player Image and Basic Info */}
           <div className="flex flex-row items-center gap-6">
             <div className="flex-shrink-0">
@@ -199,9 +199,8 @@ const HeaderGameLog = () => {
                   src={wikiData.Image}
                   alt={playerName}
                   width={165}
-                  height={0}
+                  height={100}
                   className="rounded-md object-cover"
-                  unoptimized
                 />
               ) : (
                 <div className="w-[145px] h-[174px] bg-gray-200 rounded-md" />
