@@ -16,19 +16,20 @@ const SearchBar = () => {
   const [allPlayers, setAllPlayers] = useState<Player[]>([]);
   const [filteredPlayers, setFilteredPlayers] = useState<Player[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const router = useRouter();
 
-  // Fetch players on mount
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const res = await fetch("https://lolespn-api.onrender.com/api/players/all");
-
+        const res = await fetch("http://127.0.0.1:5000/api/players/all");
         const data = await res.json();
         setAllPlayers(data);
       } catch (err) {
         console.error("Failed to fetch players:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -91,6 +92,7 @@ const SearchBar = () => {
             onChange={handleInputChange}
             placeholder="Player / Team Name"
             className="bg-transparent w-full text-gray-900 placeholder-gray-400 outline-none"
+            disabled={loading}
           />
           {/* Suggestions Dropdown */}
           {showSuggestions && filteredPlayers.length > 0 && (
@@ -109,7 +111,11 @@ const SearchBar = () => {
         </div>
 
         <button type="submit" className="pr-5">
-          <MagnifyingGlassIcon className="h-5 w-5 text-red-500" />
+          {loading ? (
+            <div className="h-5 w-5 border-2 border-t-transparent border-red-500 rounded-full animate-spin" />
+          ) : (
+            <MagnifyingGlassIcon className="h-5 w-5 text-red-500" />
+          )}
         </button>
       </div>
     </form>

@@ -76,8 +76,8 @@ const HeaderGameLog = () => {
 
   const params = useParams();
   const searchParams = useSearchParams();
-  //const BASE_API_URL = "http://127.0.0.1:5000/api";
-  const BASE_API_URL = "https://lolespn-api.onrender.com/api";
+  const BASE_API_URL = "http://127.0.0.1:5000/api";
+  //const BASE_API_URL = "https://lolespn-api.onrender.com/api";
 
   const playerId = params.id;
   const playerName = (searchParams.get("name") || "Unknown Player").split(
