@@ -90,6 +90,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
               alt={blueTeamName}
               width={56} // Tailwind's w-14 = 56px
               height={56} // Tailwind's h-14 = 56px
+              unoptimized
               className="p-1 border-b-4 rounded bg-gray-200"
               style={{ borderBottomColor: "rgb(83, 131, 232)" }}
             />
@@ -143,6 +144,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 width={32} // w-8 = 32px
                 height={32} // h-8 = 32px
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">
                 {matchData.blue_team?.towers}
@@ -155,6 +157,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 width={32} // w-8 = 32px
                 height={32} // h-8 = 32px
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">
                 {matchData.blue_team?.gold}
@@ -167,6 +170,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 width={32} // Tailwind w-8 = 32px
                 height={32} // Tailwind h-8 = 32px
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">
                 {matchData.blue_team?.kills}
@@ -199,6 +203,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 width={32} // Tailwind w-8 = 32px
                 height={32} // Tailwind h-8 = 32px
                 className="w-8 h-8"
+                unoptimized
               />
 
               <span className="text-xl font-bold">
@@ -212,6 +217,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 width={32} // w-8 = 32px
                 height={32} // h-8 = 32px
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">
                 {matchData.red_team?.gold}
@@ -224,6 +230,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 width={32} // w-8 = 32px
                 height={32} // h-8 = 32px
                 className="w-8 h-8"
+                unoptimized
               />
 
               <span className="text-xl font-bold">
@@ -281,6 +288,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
               height={56} // h-14 = 56px
               className="p-1 border-b-4 bg-gray-200"
               style={{ borderBottomColor: "rgb(232, 64, 87)" }}
+              unoptimized
             />
           </div>
         </div>
@@ -359,6 +367,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   width={36} // Tailwind w-9 = 36px
                   height={36} // Tailwind h-9 = 36px
                   className="mb-1"
+                  unoptimized
                 />
                 <span className="text-xs">Dragons</span>
               </div>
@@ -411,6 +420,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   width={36} // Tailwind w-9 = 36px
                   height={36} // Tailwind h-9 = 36px
                   className="mb-1"
+                  unoptimized
                 />
                 <span className="text-xs">Barons</span>
               </div>
@@ -463,6 +473,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   width={36} // Tailwind w-9 = 36px
                   height={36} // Tailwind h-9 = 36px
                   className="mb-1"
+                  unoptimized
                 />
                 <span className="text-xs">Grubs</span>
               </div>
@@ -500,6 +511,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 alt="Gold"
                 width={28}
                 height={28}
+                unoptimized
               />
             </div>
             <div className="flex justify-center">
@@ -508,6 +520,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 alt="Tower"
                 width={28}
                 height={28}
+                unoptimized
               />
             </div>
             <div className="flex justify-center">
@@ -516,6 +529,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 alt="Dragon"
                 width={28}
                 height={28}
+                unoptimized
               />
             </div>
             <div className="flex justify-center">
@@ -524,6 +538,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 alt="Grubs"
                 width={28}
                 height={28}
+                unoptimized
               />
             </div>
             <div className="flex justify-center">
@@ -532,6 +547,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 alt="Baron"
                 width={28}
                 height={28}
+                unoptimized
               />
             </div>
           </div>
@@ -546,6 +562,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 height={45}
                 className="p-1 border-b-4 rounded bg-gray-200"
                 style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+                unoptimized
               />
             </div>
             <div className="font-bold">{matchData.blue_team?.gold}</div>
@@ -565,6 +582,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                 height={45}
                 className="p-1 border-b-4 bg-gray-200"
                 style={{ borderBottomColor: "rgb(232, 64, 87)" }}
+                unoptimized
               />
             </div>
             <div className="font-bold">{matchData.red_team?.gold}</div>
@@ -611,6 +629,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                         width={24} // w-6 = 24px
                         height={24} // h-6 = 24px
                         className="rounded-full object-cover"
+                        unoptimized
                       />
                       {p.player}
                     </div>
@@ -625,6 +644,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                           width={20} // Tailwind w-5 = 20px
                           height={20} // Tailwind h-5 = 20px
                           className="rounded-sm"
+                          unoptimized
                         />
                       ))}
                     </div>
@@ -652,6 +672,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   width={24} // Tailwind w-6 = 24px
                   height={24} // Tailwind h-6 = 24px
                   className="rounded-full object-cover"
+                  unoptimized
                 />
               ))}
             </div>
@@ -691,6 +712,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                         width={24} // w-6 = 24px
                         height={24} // h-6 = 24px
                         className="rounded-full object-cover"
+                        unoptimized
                       />
                       {p.player}
                     </div>
@@ -705,6 +727,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                           width={20} // Tailwind w-5 = 20px
                           height={20} // Tailwind h-5 = 20px
                           className="rounded-sm"
+                          unoptimized
                         />
                       ))}
                     </div>
@@ -733,6 +756,7 @@ export default async function MatchPage({ params }: MatchPageProps) {
                   width={24}
                   height={24}
                   className="rounded-full object-cover"
+                  unoptimized
                 />
               ))}
             </div>

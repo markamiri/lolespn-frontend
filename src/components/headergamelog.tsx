@@ -201,6 +201,7 @@ const HeaderGameLog = () => {
                   width={165}
                   height={0}
                   className="rounded-md object-cover"
+                  unoptimized
                 />
               ) : (
                 <div className="w-[145px] h-[174px] bg-gray-200 rounded-md" />
@@ -228,6 +229,7 @@ const HeaderGameLog = () => {
                       width={20} // w-5 = 20px
                       height={20} // h-5 = 20px
                       className="object-contain"
+                      unoptimized
                     />
                   </a>
                 )}
@@ -326,6 +328,7 @@ const HeaderGameLog = () => {
           width={200} // Wider
           height={150} // Shorter = rectangle
           className="rounded-md pt-4"
+          unoptimized
         />
       </div>
 
@@ -426,6 +429,7 @@ const HeaderGameLog = () => {
                                     width={24}
                                     height={24}
                                     className="rounded-md"
+                                    unoptimized
                                   />
                                   <div className="font-bold">
                                     {champ.champion}
@@ -602,6 +606,7 @@ const HeaderGameLog = () => {
                               width={28}
                               height={28}
                               className="rounded-md object-cover"
+                              unoptimized
                             />
                             <span className="text-left">{match.champion}</span>
                           </div>

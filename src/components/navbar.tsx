@@ -16,6 +16,7 @@ export default function Navbar() {
               alt="ESPN"
               width={170}
               height={50}
+              unoptimized
             />{" "}
           </Link>
         </div>

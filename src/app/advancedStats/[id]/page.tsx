@@ -78,6 +78,7 @@ export default function AdvancedStatsPage() {
               height={56}
               className="p-1 border-b-4 rounded bg-gray-200"
               style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+              unoptimized
             />
           </div>
 
@@ -90,6 +91,7 @@ export default function AdvancedStatsPage() {
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">{bluetowers}</span>
             </div>
@@ -100,6 +102,7 @@ export default function AdvancedStatsPage() {
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">{bluegold}</span>
             </div>
@@ -110,6 +113,7 @@ export default function AdvancedStatsPage() {
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">{bluekills}</span>
             </div>
@@ -134,6 +138,7 @@ export default function AdvancedStatsPage() {
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">{redkills}</span>
             </div>
@@ -144,6 +149,7 @@ export default function AdvancedStatsPage() {
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">{redgold}</span>
             </div>
@@ -154,6 +160,7 @@ export default function AdvancedStatsPage() {
                 width={32}
                 height={32}
                 className="w-8 h-8"
+                unoptimized
               />
               <span className="text-xl font-bold">{redtowers}</span>
             </div>
@@ -168,6 +175,7 @@ export default function AdvancedStatsPage() {
               height={56}
               className="p-1 border-b-4 bg-gray-200"
               style={{ borderBottomColor: "rgb(232, 64, 87)" }}
+              unoptimized
             />
           </div>
         </div>
@@ -210,6 +218,7 @@ export default function AdvancedStatsPage() {
             height={56}
             className="p-1 border-b-4 rounded bg-gray-200"
             style={{ borderBottomColor: "rgb(83, 131, 232)" }}
+            unoptimized
           />
           <h2 className="text-lg font-bold text-black">
             {blueTeamName ?? "Blue Team"}
@@ -262,6 +271,7 @@ export default function AdvancedStatsPage() {
                       width={20}
                       height={20}
                       className="rounded-full object-cover"
+                      unoptimized
                     />
                   </td>
                   <td>{fullStats?.metrics?.Level?.blue?.[i]}</td>
@@ -336,6 +346,7 @@ export default function AdvancedStatsPage() {
             height={56}
             className="p-1 border-b-4 rounded bg-gray-200"
             style={{ borderBottomColor: "rgb(232, 64, 87)" }}
+            unoptimized
           />
           <h2 className="text-lg font-bold text-black">
             {redTeamName ?? "red Team"}
@@ -390,6 +401,7 @@ export default function AdvancedStatsPage() {
                       width={20}
                       height={20}
                       className="rounded-full object-cover"
+                      unoptimized
                     />
                   </td>
 
