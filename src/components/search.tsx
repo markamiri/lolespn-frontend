@@ -23,7 +23,9 @@ const SearchBar = () => {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:5000/api/players/all");
+        const res = await fetch(
+          "https://lolespn-api.onrender.com/api/players/all"
+        );
         const data = await res.json();
         setAllPlayers(data);
       } catch (err) {
